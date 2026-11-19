@@ -24,19 +24,41 @@ h3{font-size:21px;margin:22px 0 8px}
 p{margin:0 0 12px}
 b{color:var(--dark)}
 a{color:var(--ink)}
-.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;max-width:1180px;margin:0 auto;padding:40px 24px 80px}
-nav.toc{position:sticky;top:24px;align-self:start;font-size:14px}
-nav.toc .label{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
-nav.toc a{display:block;padding:6px 10px;border-left:3px solid transparent;color:var(--body);text-decoration:none;border-radius:0 6px 6px 0}
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(247,243,238,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.tb-in{max-width:1180px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.tb-brand{font:700 16px "Space Grotesk",Arial,sans-serif;color:var(--dark);white-space:nowrap}
+.tb-brand span{color:var(--ink)}
+.tb-now{font-size:14px;color:var(--muted);white-space:nowrap}
+.tb-now b{color:var(--ink)}
+.tb-btn{display:none;align-items:center;gap:8px;font:600 14px Inter,Arial,sans-serif;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--dark);cursor:pointer;min-width:0;max-width:62vw}
+.tb-btn .tp{color:var(--ink);white-space:nowrap}
+.tb-btn .tn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-btn .chev{flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-3px);margin-left:2px}
+.tb-prog{height:3px}
+.tb-prog div{height:100%;width:0;background:var(--accent)}
+/* layout */
+.wrap{display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;max-width:1180px;margin:0 auto;padding:36px 24px 80px}
+nav.toc{position:sticky;top:84px;align-self:start;font-size:14.5px;max-height:calc(100vh - 100px);overflow:auto}
+nav.toc .label{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 10px 10px}
+nav.toc .shead{display:none}
+nav.toc a{display:flex;align-items:center;gap:10px;padding:7px 10px;margin:1px 0;color:var(--body);text-decoration:none;border-radius:10px;line-height:1.3}
+nav.toc a .n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--light2);color:var(--muted);font:700 12px "Space Grotesk",Arial,sans-serif;display:grid;place-items:center}
 nav.toc a:hover{background:var(--light2)}
-nav.toc a.on{border-left-color:var(--accent);background:var(--card);color:var(--dark);font-weight:600}
+nav.toc a.on{background:var(--card);box-shadow:0 0 0 1px var(--line);color:var(--dark);font-weight:600}
+nav.toc a.on .n{background:var(--accent);color:#fff}
+.scrim{display:none}
 main{min-width:0;max-width:860px}
+td small{display:block;font-size:12.5px;color:var(--muted)}
+.next{display:flex;justify-content:flex-end;margin-top:18px}
+.next a{font-size:14.5px;font-weight:600;color:var(--ink);text-decoration:none;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--light)}
+.next a:hover{border-color:var(--accent)}
 .eyebrow{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:8px}
 header.top{margin-bottom:28px}
 header.top .sub{font-size:19px;color:var(--body);margin-top:12px}
 .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .pill{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--body)}
-section.s{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:22px 0;scroll-margin-top:16px}
+section.s{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:22px 0;scroll-margin-top:76px}
 .s .time{font-size:13px;color:var(--muted);margin-bottom:14px}
 .lead{font-size:20px;color:var(--dark);font-weight:500}
 table{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0 6px}
@@ -141,40 +163,71 @@ select{font:15px Inter,Arial,sans-serif;padding:8px;border-radius:8px;border:1px
 .check .t{font-weight:600;color:var(--dark)}
 .check .d{font-size:14.5px}
 footer{font-size:13px;color:var(--muted);margin-top:30px}
-@media (max-width:900px){
-  .wrap{grid-template-columns:1fr;gap:0;padding:20px 16px 60px}
-  nav.toc{position:static;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:16px}
-  nav.toc a{display:inline-block;border-left:none;padding:4px 8px}
+@media (max-width:1000px){
+  .tb-in{padding:8px 16px;min-height:54px}
+  .tb-now{display:none}
+  .tb-btn{display:flex}
+  .wrap{grid-template-columns:1fr;gap:0;padding:24px 16px 60px}
+  nav.toc{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:70;max-height:82vh;background:var(--card);border-radius:20px 20px 0 0;padding:8px 12px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px rgba(42,30,23,.18);transform:translateY(105%);visibility:hidden;transition:transform .25s ease,visibility 0s linear .25s;font-size:16px}
+  nav.toc.open{transform:none;visibility:visible;transition:transform .25s ease}
+  nav.toc .label{display:none}
+  nav.toc .shead{display:flex;justify-content:space-between;align-items:center;padding:10px 8px 10px 10px;position:sticky;top:-8px;background:var(--card)}
+  nav.toc .shead b{font:700 18px "Space Grotesk",Arial,sans-serif}
+  nav.toc .shead button{font:600 14px Inter,Arial,sans-serif;border:1px solid var(--line);background:var(--light);border-radius:999px;padding:7px 14px;color:var(--dark);cursor:pointer}
+  nav.toc a{padding:11px 10px}
+  .scrim{display:block;position:fixed;inset:0;z-index:60;background:rgba(42,30,23,.4);opacity:0;pointer-events:none;transition:opacity .2s}
+  .scrim.open{opacity:1;pointer-events:auto}
   h1{font-size:32px} h2{font-size:25px}
   section.s{padding:22px 18px}
   .cards,.kv{grid-template-columns:1fr 1fr}
   .calc,.two{grid-template-columns:1fr}
   .hrow{grid-template-columns:120px minmax(0,1fr) 70px;font-size:13px}
   .funnel{flex-wrap:wrap}.farrow{display:none}.fstep{flex:1 1 40%}
-  .chart{height:170px;gap:3px}.mlabels{gap:3px;font-size:10px}
+  .chart{gap:3px}.mlabels{gap:3px;font-size:10px}
   .dots{grid-template-columns:repeat(15,14px)}
 }
-@media (max-width:600px){.cards{grid-template-columns:1fr}}
+@media (max-width:600px){
+  .cards{grid-template-columns:1fr}
+  h1{font-size:29px} header.top .sub{font-size:17px}
+  .tb-brand{font-size:15px}
+  .meta{gap:6px}.pill{font-size:12.5px;padding:4px 10px}
+  section.s{padding:20px 16px;margin:16px 0}
+  .lead{font-size:18px}
+  .card .big{font-size:30px}
+  table{font-size:13.5px} th,td{padding:8px 5px}
+  .mlabels{font-size:9.5px;gap:3px}.mlabels .yr{display:none}.mlabels .yr.keep{display:inline}
+  .chip{font-size:17px;padding:6px 10px}.seq{gap:6px}
+}
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="tb-in">
+    <div class="tb-brand">Aura Shot <span>· year one</span></div>
+    <div class="tb-now" id="tbNow"><b>Part 1</b> of 14</div>
+    <button class="tb-btn" id="tbBtn" aria-expanded="false" aria-controls="toc"><span class="tp" id="tbPart">Part 1/14</span><span class="tn" id="tbName">The answer</span><span class="chev"></span></button>
+  </div>
+  <div class="tb-prog"><div id="prog"></div></div>
+</div>
+<div class="scrim" id="scrim"></div>
 <div class="wrap">
-<nav class="toc" id="toc">
+<nav class="toc" id="toc" aria-label="Parts of this page">
+  <div class="shead"><b>All parts</b><button type="button" id="tocClose">Close</button></div>
   <div class="label">On this page</div>
-  <a href="#answer">1 · The answer</a>
-  <a href="#last">2 · The last campaign</a>
-  <a href="#funnel">3 · Where people drop off</a>
-  <a href="#year">4 · The year, month by month</a>
-  <a href="#ads">5 · Which ads sold</a>
-  <a href="#wear">6 · Ads wear out</a>
-  <a href="#price">7 · The price path</a>
-  <a href="#money">8 · The money (try it)</a>
-  <a href="#repeat">9 · Repeat buyers</a>
-  <a href="#ideas">10 · What the product says</a>
-  <a href="#sure">11 · How sure we are</a>
-  <a href="#quiz">12 · Check yourself</a>
-  <a href="#decide">13 · What we decide</a>
-  <a href="#data">14 · Data and definitions</a>
+  <a href="#answer"><span class="n">1</span><span class="t">The answer</span></a>
+  <a href="#last"><span class="n">2</span><span class="t">The last campaign</span></a>
+  <a href="#funnel"><span class="n">3</span><span class="t">Where people drop off</span></a>
+  <a href="#year"><span class="n">4</span><span class="t">The year, month by month</span></a>
+  <a href="#ads"><span class="n">5</span><span class="t">Which ads sold</span></a>
+  <a href="#wear"><span class="n">6</span><span class="t">Ads wear out</span></a>
+  <a href="#price"><span class="n">7</span><span class="t">The price path</span></a>
+  <a href="#money"><span class="n">8</span><span class="t">The money (try it)</span></a>
+  <a href="#repeat"><span class="n">9</span><span class="t">Repeat buyers</span></a>
+  <a href="#ideas"><span class="n">10</span><span class="t">What the product says</span></a>
+  <a href="#sure"><span class="n">11</span><span class="t">How sure we are</span></a>
+  <a href="#quiz"><span class="n">12</span><span class="t">Check yourself</span></a>
+  <a href="#decide"><span class="n">13</span><span class="t">What we decide</span></a>
+  <a href="#data"><span class="n">14</span><span class="t">Data and definitions</span></a>
 </nav>
 
 <main>
@@ -197,20 +250,21 @@ footer{font-size:13px;color:var(--muted);margin-top:30px}
   <div class="time">1 minute</div>
   <p class="lead">Ads sold Aura Shot once. Almost nobody came back to buy again.</p>
   <div class="cards">
-    <div class="card"><div class="big">₹2,020</div><div class="lbl">ad money for each order that reached a customer</div><div class="note">One order earned ₹516–616 at ₹1,199, and about ₹0 at ₹499.</div></div>
-    <div class="card"><div class="big">1 in 109</div><div class="lbl">real customers ordered a second time</div><div class="note">Healthy Indian D2C brands: 10–30%.</div></div>
+    <div class="card"><div class="big">₹2,048</div><div class="lbl">sales-ad money for each order that reached a real customer</div><div class="note">One order earned ₹516–616 at ₹1,199, and about ₹0 at ₹499.</div></div>
+    <div class="card"><div class="big">1 in 109</div><div class="lbl">real customers received a second order</div><div class="note">Rechecked on 19 Nov. Healthy Indian D2C brands: 10–30%.</div></div>
     <div class="card"><div class="big">0 orders</div><div class="lbl">in Sep and Oct 2026, when no ads ran</div><div class="note">The product does not sell without ads yet.</div></div>
   </div>
   <div class="call imp"><div class="t">Important</div>Price and the product message matter. But these three facts come first. Each sale lost money, and the customer did not come back to make up for it.</div>
   <details class="maths"><summary>Show the maths</summary><div class="in">
-    <p><b>Ad money per delivered order</b></p>
-    <div class="f">All Meta ad spend, Nov 2025 – Aug 2026  ÷  orders delivered in that time
-= ₹2,60,547 ÷ 129 = ₹2,020</div>
-    <p>A cleaner way gives almost the same answer: sales ads only (₹2,25,303) ÷ delivered orders from real customers only (110) = <b>₹2,048</b>.</p>
+    <p><b>Sales-ad money per delivered order</b></p>
+    <div class="f">Sales ads only, Nov 2025 – Aug 2026  ÷  real customers' orders delivered in that time
+= ₹2,25,303 ÷ 110 = ₹2,048</div>
+    <p>“Sales ads” leaves out follower and boost ads (₹35,244). The 110 orders include some that did not come from an ad, so the true cost of one ad sale is a little higher than ₹2,048.</p>
+    <p>If we count all ad money and all delivered orders, the answer is almost the same: ₹2,60,547 ÷ 129 = ₹2,020.</p>
     <p><b>Repeat rate</b></p>
     <div class="f">Real customers with 2 or more delivered orders  ÷  real customers who received a bottle
 = 1 ÷ 109 = 0.9%</div>
-    <p>“Real” means: not founders, family, friends, test orders or the café deal.</p>
+    <p>“Real” means: not founders, family, friends, test orders or the café deal. Part 9 shows how we checked this.</p>
   </div></details>
 </section>
 
@@ -222,10 +276,10 @@ footer{font-size:13px;color:var(--muted);margin-top:30px}
   <p>Mumbai, Thane and Navi Mumbai. Women 18–34. ₹3,000 a day. Four ads. Price ₹499.</p>
   <table>
     <tr><th>Ad</th><th class="r">Spend</th><th class="r">Sales</th><th class="r">Cost per sale</th></tr>
-    <tr><td>Ad 4 · Shelf vs bag (carousel)</td><td class="r">₹5,658</td><td class="r">2</td><td class="r">₹2,829</td></tr>
-    <tr><td>Ad 2 · 2 PM reset (video)</td><td class="r">₹3,307</td><td class="r">1</td><td class="r">₹3,307</td></tr>
-    <tr><td>Ad 1 · Q&amp;A (video)</td><td class="r">₹689</td><td class="r">0</td><td class="r">none</td></tr>
-    <tr><td>Ad 3 · AC skin (image)</td><td class="r">₹534</td><td class="r">0</td><td class="r">none</td></tr>
+    <tr><td><b>Ad 4</b> · Shelf vs bag<small>carousel</small></td><td class="r">₹5,658</td><td class="r">2</td><td class="r">₹2,829</td></tr>
+    <tr><td><b>Ad 2</b> · 2 PM reset<small>video</small></td><td class="r">₹3,307</td><td class="r">1</td><td class="r">₹3,307</td></tr>
+    <tr><td><b>Ad 1</b> · Q&amp;A<small>video</small></td><td class="r">₹689</td><td class="r">0</td><td class="r">none</td></tr>
+    <tr><td><b>Ad 3</b> · AC skin<small>image</small></td><td class="r">₹534</td><td class="r">0</td><td class="r">none</td></tr>
     <tr class="tot"><td>Total</td><td class="r">₹10,188</td><td class="r">3</td><td class="r">₹3,396</td></tr>
   </table>
   <div class="call simple"><div class="t">In simple words</div>We paid ₹3,396 to get one ₹499 order. The 3 orders brought in ₹1,897. So for every ₹1 spent, ₹0.19 came back. At ₹499, one bottle earns about ₹0 after product and shipping, so no ad cost can work.</div>
@@ -369,8 +423,8 @@ Example: ₹20,898 ÷ 27 = ₹774</div>
         </select></div>
       <div class="ctl"><label>Product cost per bottle <span id="vprod"></span></label><input type="range" id="cprod" min="200" max="450" step="5" value="325"></div>
       <div class="ctl"><label>Shipping per order <span id="vship"></span></label><input type="range" id="cship" min="50" max="200" step="5" value="125"></div>
-      <div class="ctl"><label>Ad money per order <span id="vads"></span></label><input type="range" id="cads" min="200" max="3500" step="10" value="2020"></div>
-      <p style="font-size:13.5px;color:var(--muted)">Our year average was ₹2,020. Our best two weeks were ₹774.</p>
+      <div class="ctl"><label>Ad money per order <span id="vads"></span></label><input type="range" id="cads" min="200" max="3500" step="1" value="2048"></div>
+      <p style="font-size:13.5px;color:var(--muted)">Our year average was ₹2,048 (sales ads only). Our best two weeks were ₹774.</p>
     </div>
     <div class="res" id="cres"></div>
   </div>
@@ -394,7 +448,7 @@ Result after ads = earned − ₹2,60,547 ads = −₹1,98,783 to −₹1,83,033
   <div class="eyebrow">Part 9</div>
   <h2>Repeat buyers: the core problem</h2>
   <div class="time">2 minutes</div>
-  <p class="lead">1 of 109 real customers ordered a second time.</p>
+  <p class="lead">1 of 109 real customers received a second order.</p>
   <p>Each dot is one real customer who received a bottle.</p>
   <div class="btns" id="rbtns">
     <button class="b on" data-r="1">Show who reordered</button>
@@ -411,6 +465,16 @@ Result after ads = earned − ₹2,60,547 ads = −₹1,98,783 to −₹1,83,033
            = 1 ÷ 109 = 0.9%
 Wider count = real customers who placed a second order ÷ 109 = 2 ÷ 109 = 1.8%</div>
     <p>The second customer ordered again in August, but that order was not delivered. Removed from the count: founders, family, friends, test orders, the café deal, and re-orders after a failed delivery.</p>
+    <p><b>How we checked (19 Nov 2026).</b> We matched all 224 tracker orders (Nov 2025 – Aug 2026) to people by phone number, full name, address, and first name with pincode. The 4 customer orders from Nov 2026 were checked against all earlier buyers on 17 Nov. Every person with more than one order:</p>
+    <table>
+      <tr><th>Who</th><th class="r">People</th><th>Counted as repeat?</th></tr>
+      <tr><td>Real customer, 2 orders delivered (Jan, then Feb)</td><td class="r">1</td><td>Yes</td></tr>
+      <tr><td>Real customer, 2nd order came back undelivered (Aug)</td><td class="r">1</td><td>Only in the wider count</td></tr>
+      <tr><td>Ordered again because the 1st order failed or came back</td><td class="r">6</td><td>No: they got 1 bottle or none</td></tr>
+      <tr><td>Test order, then the real order on the same day</td><td class="r">2</td><td>No: 1 real order each</td></tr>
+      <tr><td>Founders, family, friends (one friend ordered 5 times)</td><td class="r">4</td><td>No: not real customers</td></tr>
+      <tr><td>Nov 2026 customers who bought before</td><td class="r">0</td><td>No: the Nov buyers are new (the friend above is not counted)</td></tr>
+    </table>
   </div></details>
 </section>
 
@@ -559,7 +623,7 @@ Wider count = real customers who placed a second order ÷ 109 = 2 ÷ 109 = 1.8%<
   M.forEach(function(m,i){
     var hs=Math.max(2,Math.round(m[1]/maxS*190)),ho=Math.max(2,Math.round(m[2]/maxO*190));
     ch+='<div class="col" data-i="'+i+'" title="'+m[0]+'"><div class="bars"><div class="bar sp" style="height:'+hs+'px"></div><div class="bar or" style="height:'+ho+'px"></div></div></div>';
-    ml+='<div>'+m[0].replace(' ','<br>')+'</div>';
+    ml+='<div>'+m[0].replace(' ','<span class="yr'+((i===0||i===M.length-1)?' keep':'')+'"><br>')+'</span></div>';
   });
   document.getElementById('chart').innerHTML=ch;
   document.getElementById('mlabels').innerHTML=ml;
@@ -660,12 +724,38 @@ Wider count = real customers who placed a second order ÷ 109 = 2 ÷ 109 = 1.8%<
       [].forEach.call($(id).querySelectorAll('button.b'),function(x){x.classList.toggle('on',x===b)});fn(b.dataset[key]);});
   }
 
-  /* toc highlight */
+  /* navigation: current part, progress bar, parts sheet, next links */
   var links=[].slice.call(document.querySelectorAll('nav.toc a'));
-  if('IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
-    [].forEach.call(document.querySelectorAll('section.s'),function(s){obs.observe(s)});
+  var secs=[].slice.call(document.querySelectorAll('section.s'));
+  var toc=$('toc'),scrim=$('scrim'),btn=$('tbBtn');
+  function openToc(o){toc.classList.toggle('open',o);scrim.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');}
+  btn.addEventListener('click',function(){openToc(!toc.classList.contains('open'))});
+  scrim.addEventListener('click',function(){openToc(false)});
+  $('tocClose').addEventListener('click',function(){openToc(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')openToc(false)});
+  links.forEach(function(a){a.addEventListener('click',function(){openToc(false)})});
+  secs.forEach(function(s,i){
+    var nx=links[i+1];if(!nx)return;
+    var d=document.createElement('div');d.className='next';
+    d.innerHTML='<a href="'+nx.getAttribute('href')+'">Next: Part '+(i+2)+' · '+nx.querySelector('.t').textContent+' ↓</a>';
+    s.appendChild(d);
+  });
+  var cur=-1;
+  function setCur(i){
+    if(i===cur)return;cur=i;
+    links.forEach(function(a,j){a.classList.toggle('on',j===i)});
+    var name=links[i].querySelector('.t').textContent;
+    $('tbPart').textContent='Part '+(i+1)+'/14';$('tbName').textContent=name;
+    $('tbNow').innerHTML='<b>Part '+(i+1)+'</b> of 14 · '+name;
   }
+  function onScroll(){
+    var y=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
+    $('prog').style.width=(h>0?Math.min(100,y/h*100):0)+'%';
+    var line=window.innerHeight*0.35,i=0;
+    secs.forEach(function(s,j){if(s.getBoundingClientRect().top<=line)i=j});
+    setCur(i);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
 })();
 </script>
 </body>

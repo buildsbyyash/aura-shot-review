@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura Shot: year one review</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#2A1E17; --body:#4E3F36; --muted:#74625A; --light:#F7F3EE; --light2:#EFE6DC; --card:#FFFDF9;
+  --accent:#C8693A; --ink:#9E4A25; --soft:#FBEDE4; --blue:#2F5D7C; --bluesoft:#E3EDF4; --line:#DCCFC3;
+  --good:#2F6B4F; --goodsoft:#E3F1E9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--light);color:var(--body);font:17px/1.6 Inter,Arial,sans-serif}
+h1,h2,h3{font-family:"Space Grotesk",Arial,sans-serif;color:var(--dark);line-height:1.15;margin:0}
+h1{font-size:44px}
+h2{font-size:32px;margin-bottom:6px}
+h3{font-size:21px;margin:22px 0 8px}
+p{margin:0 0 12px}
+b{color:var(--dark)}
+a{color:var(--ink)}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;max-width:1180px;margin:0 auto;padding:40px 24px 80px}
+nav.toc{position:sticky;top:24px;align-self:start;font-size:14px}
+nav.toc .label{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+nav.toc a{display:block;padding:6px 10px;border-left:3px solid transparent;color:var(--body);text-decoration:none;border-radius:0 6px 6px 0}
+nav.toc a:hover{background:var(--light2)}
+nav.toc a.on{border-left-color:var(--accent);background:var(--card);color:var(--dark);font-weight:600}
+main{min-width:0;max-width:860px}
+.eyebrow{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:8px}
+header.top{margin-bottom:28px}
+header.top .sub{font-size:19px;color:var(--body);margin-top:12px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.pill{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--body)}
+section.s{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin:22px 0;scroll-margin-top:16px}
+.s .time{font-size:13px;color:var(--muted);margin-bottom:14px}
+.lead{font-size:20px;color:var(--dark);font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0 6px}
+th{text-align:left;font-weight:600;color:var(--dark);border-bottom:2px solid var(--line);padding:9px 8px}
+td{border-bottom:1px solid var(--light2);padding:9px 8px;vertical-align:top}
+td.r,th.r{text-align:right;white-space:nowrap}
+tr.tot td{font-weight:700;color:var(--dark);background:var(--light)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0}
+.card{background:var(--light);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card .big{font-family:"Space Grotesk",Arial,sans-serif;font-size:34px;font-weight:700;color:var(--ink);line-height:1.1}
+.card .lbl{font-size:15px;color:var(--dark);font-weight:600;margin-top:6px}
+.card .note{font-size:13.5px;color:var(--muted);margin-top:6px}
+.call{border-radius:12px;padding:14px 18px;margin:16px 0;font-size:15.5px;border:1px solid}
+.call .t{font-weight:700;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
+.call.simple{background:var(--bluesoft);border-color:#C4D7E5}
+.call.simple .t{color:var(--blue)}
+.call.imp{background:var(--soft);border-color:#EBC3AA}
+.call.imp .t{color:var(--ink)}
+.call.good{background:var(--goodsoft);border-color:#BFDCCB}
+.call.good .t{color:var(--good)}
+details.maths{margin-top:16px;border:1px dashed var(--line);border-radius:12px;background:var(--light)}
+details.maths summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--ink);list-style:none}
+details.maths summary::-webkit-details-marker{display:none}
+details.maths summary::before{content:"＋ ";}
+details.maths[open] summary::before{content:"－ ";}
+details.maths .in{padding:0 16px 14px;font-size:15px}
+.f{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;color:var(--dark);overflow-x:auto;white-space:pre-wrap}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+button.b{font:600 14px Inter,Arial,sans-serif;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--light);color:var(--dark);cursor:pointer}
+button.b:hover{border-color:var(--accent)}
+button.b.on{background:var(--dark);color:var(--light);border-color:var(--dark)}
+.panel{background:var(--light);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:10px}
+/* funnel */
+.funnel{display:flex;gap:8px;align-items:stretch;margin:14px 0}
+.fstep{flex:1;background:var(--light);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.fstep .n{font-family:"Space Grotesk",Arial,sans-serif;font-size:30px;font-weight:700;color:var(--dark)}
+.fstep .l{font-size:13.5px;color:var(--body)}
+.fstep .p{font-size:13px;color:var(--ink);font-weight:600;margin-top:4px}
+.farrow{align-self:center;color:var(--muted);font-size:20px}
+/* chart */
+.chart{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px;align-items:end;height:220px;margin-top:10px;border-bottom:2px solid var(--line)}
+.col{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;cursor:pointer;border-radius:8px 8px 0 0;padding-top:4px}
+.col:hover{background:var(--light2)}
+.col.sel{background:var(--light2)}
+.bars{display:flex;gap:3px;align-items:flex-end;width:100%;justify-content:center}
+.bar{width:42%;border-radius:4px 4px 0 0;min-height:2px}
+.bar.sp{background:var(--blue)}
+.bar.or{background:var(--accent)}
+.mlabels{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px;font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+.legend{display:flex;gap:16px;font-size:13.5px;margin-top:8px;color:var(--body)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.kv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0}
+.kv > div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+.kv .k{font-size:12.5px;color:var(--muted)}
+.kv .v{font-family:"Space Grotesk",Arial,sans-serif;font-size:21px;font-weight:700;color:var(--dark)}
+/* hbar */
+.hrow{display:grid;grid-template-columns:220px minmax(0,1fr) 92px;gap:10px;align-items:center;margin:7px 0;font-size:14.5px}
+.htrack{background:var(--light2);border-radius:6px;height:22px;overflow:hidden}
+.hfill{height:100%;background:var(--accent);border-radius:6px}
+.hfill.blue{background:var(--blue)}
+.hval{text-align:right;font-weight:600;color:var(--dark)}
+/* chips */
+.seq{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0}
+.chip{font-family:"Space Grotesk",Arial,sans-serif;font-weight:700;font-size:22px;background:var(--light);border:1px solid var(--line);border-radius:10px;padding:8px 14px;color:var(--dark)}
+.chip small{display:block;font:500 11.5px Inter,Arial,sans-serif;color:var(--muted)}
+.chip.hot{border-color:var(--accent);color:var(--ink);background:var(--soft)}
+.to{color:var(--muted)}
+/* calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.ctl{margin:10px 0}
+.ctl label{display:flex;justify-content:space-between;font-size:14.5px;font-weight:600;color:var(--dark)}
+.ctl input[type=range]{width:100%;accent-color:var(--accent)}
+select{font:15px Inter,Arial,sans-serif;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card);width:100%}
+.res{background:var(--light);border:1px solid var(--line);border-radius:12px;padding:16px}
+.res .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--light2);font-size:15px}
+.res .row:last-child{border-bottom:none}
+.res .row b{font-family:"Space Grotesk",Arial,sans-serif}
+.verdict{margin-top:12px;font-weight:700;font-size:16px;padding:10px 12px;border-radius:10px}
+.verdict.bad{background:var(--soft);color:var(--ink)}
+.verdict.ok{background:var(--goodsoft);color:var(--good)}
+/* dots */
+.dots{display:grid;grid-template-columns:repeat(20,14px);gap:6px;margin:14px 0}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.dot.one{background:var(--accent)}
+.dot.two{background:var(--blue)}
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.tag{font-size:14px;padding:6px 12px;border-radius:999px;background:var(--light);border:1px solid var(--line);color:var(--dark)}
+.tag.good{background:var(--soft);border-color:var(--accent);font-weight:600}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+/* quiz */
+.q{background:var(--light);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.q .opts{display:grid;gap:8px;margin-top:8px}
+.q button.o{text-align:left;font:15px Inter,Arial,sans-serif;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--dark)}
+.q button.o.right{background:var(--goodsoft);border-color:var(--good)}
+.q button.o.wrong{background:var(--soft);border-color:var(--accent)}
+.q .why{display:none;margin-top:10px;font-size:14.5px}
+.q.done .why{display:block}
+/* checklist */
+.check{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--light2)}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--accent)}
+.check .t{font-weight:600;color:var(--dark)}
+.check .d{font-size:14.5px}
+footer{font-size:13px;color:var(--muted);margin-top:30px}
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:0;padding:20px 16px 60px}
+  nav.toc{position:static;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:16px}
+  nav.toc a{display:inline-block;border-left:none;padding:4px 8px}
+  h1{font-size:32px} h2{font-size:25px}
+  section.s{padding:22px 18px}
+  .cards,.kv{grid-template-columns:1fr 1fr}
+  .calc,.two{grid-template-columns:1fr}
+  .hrow{grid-template-columns:120px minmax(0,1fr) 70px;font-size:13px}
+  .funnel{flex-wrap:wrap}.farrow{display:none}.fstep{flex:1 1 40%}
+  .chart{height:170px;gap:3px}.mlabels{gap:3px;font-size:10px}
+  .dots{grid-template-columns:repeat(15,14px)}
+}
+@media (max-width:600px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="label">On this page</div>
+  <a href="#answer">1 · The answer</a>
+  <a href="#last">2 · The last campaign</a>
+  <a href="#funnel">3 · Where people drop off</a>
+  <a href="#year">4 · The year, month by month</a>
+  <a href="#ads">5 · Which ads sold</a>
+  <a href="#wear">6 · Ads wear out</a>
+  <a href="#price">7 · The price path</a>
+  <a href="#money">8 · The money (try it)</a>
+  <a href="#repeat">9 · Repeat buyers</a>
+  <a href="#ideas">10 · What the product says</a>
+  <a href="#sure">11 · How sure we are</a>
+  <a href="#quiz">12 · Check yourself</a>
+  <a href="#decide">13 · What we decide</a>
+  <a href="#data">14 · Data and definitions</a>
+</nav>
+
+<main>
+<header class="top">
+  <div class="eyebrow">Déjà You · Aura Shot · internal review</div>
+  <h1>Aura Shot, year one: what happened, and why</h1>
+  <p class="sub">Nov 2025 to Nov 2026. Ads, price, product page and buyers, step by step. Every number shows its maths.</p>
+  <div class="meta">
+    <span class="pill">About 15 minutes to read</span>
+    <span class="pill">Data checked on 17 Nov 2026</span>
+    <span class="pill">Sources: Meta Ads, order tracker, order emails</span>
+  </div>
+  <div class="call simple"><div class="t">How to read this page</div>Go from top to bottom. Each part has one main point. Click the buttons to see more. Click <b>“Show the maths”</b> to see how a number is calculated.</div>
+</header>
+
+<!-- 1 -->
+<section class="s" id="answer">
+  <div class="eyebrow">Part 1</div>
+  <h2>The answer in one line</h2>
+  <div class="time">1 minute</div>
+  <p class="lead">Ads sold Aura Shot once. Almost nobody came back to buy again.</p>
+  <div class="cards">
+    <div class="card"><div class="big">₹2,020</div><div class="lbl">ad money for each order that reached a customer</div><div class="note">One order earned ₹516–616 at ₹1,199, and about ₹0 at ₹499.</div></div>
+    <div class="card"><div class="big">1 in 109</div><div class="lbl">real customers ordered a second time</div><div class="note">Healthy Indian D2C brands: 10–30%.</div></div>
+    <div class="card"><div class="big">0 orders</div><div class="lbl">in Sep and Oct 2026, when no ads ran</div><div class="note">The product does not sell without ads yet.</div></div>
+  </div>
+  <div class="call imp"><div class="t">Important</div>Price and the product message matter. But these three facts come first. Each sale lost money, and the customer did not come back to make up for it.</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <p><b>Ad money per delivered order</b></p>
+    <div class="f">All Meta ad spend, Nov 2025 – Aug 2026  ÷  orders delivered in that time
+= ₹2,60,547 ÷ 129 = ₹2,020</div>
+    <p>A cleaner way gives almost the same answer: sales ads only (₹2,25,303) ÷ delivered orders from real customers only (110) = <b>₹2,048</b>.</p>
+    <p><b>Repeat rate</b></p>
+    <div class="f">Real customers with 2 or more delivered orders  ÷  real customers who received a bottle
+= 1 ÷ 109 = 0.9%</div>
+    <p>“Real” means: not founders, family, friends, test orders or the café deal.</p>
+  </div></details>
+</section>
+
+<!-- 2 -->
+<section class="s" id="last">
+  <div class="eyebrow">Part 2</div>
+  <h2>The last campaign: ₹10,188 spent, 3 sales</h2>
+  <div class="time">2 minutes · 13–15 Nov 2026 · paused on 16 Nov</div>
+  <p>Mumbai, Thane and Navi Mumbai. Women 18–34. ₹3,000 a day. Four ads. Price ₹499.</p>
+  <table>
+    <tr><th>Ad</th><th class="r">Spend</th><th class="r">Sales</th><th class="r">Cost per sale</th></tr>
+    <tr><td>Ad 4 · Shelf vs bag (carousel)</td><td class="r">₹5,658</td><td class="r">2</td><td class="r">₹2,829</td></tr>
+    <tr><td>Ad 2 · 2 PM reset (video)</td><td class="r">₹3,307</td><td class="r">1</td><td class="r">₹3,307</td></tr>
+    <tr><td>Ad 1 · Q&amp;A (video)</td><td class="r">₹689</td><td class="r">0</td><td class="r">none</td></tr>
+    <tr><td>Ad 3 · AC skin (image)</td><td class="r">₹534</td><td class="r">0</td><td class="r">none</td></tr>
+    <tr class="tot"><td>Total</td><td class="r">₹10,188</td><td class="r">3</td><td class="r">₹3,396</td></tr>
+  </table>
+  <div class="call simple"><div class="t">In simple words</div>We paid ₹3,396 to get one ₹499 order. The 3 orders brought in ₹1,897. So for every ₹1 spent, ₹0.19 came back. At ₹499, one bottle earns about ₹0 after product and shipping, so no ad cost can work.</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Cost per sale = ₹10,188 ÷ 3 = ₹3,396
+Back for each ₹1 = (₹499 + ₹499 + ₹899) ÷ ₹10,188 = ₹1,897 ÷ ₹10,188 = ₹0.19</div>
+    <p>₹10,812 of the ₹21,000 cap was not spent, because we paused it.</p>
+  </div></details>
+</section>
+
+<!-- 3 -->
+<section class="s" id="funnel">
+  <div class="eyebrow">Part 3</div>
+  <h2>Where people drop off</h2>
+  <div class="time">2 minutes</div>
+  <p>Click to compare our best campaign with the last one.</p>
+  <div class="btns" id="fbtns">
+    <button class="b on" data-f="nov">Last campaign (Nov 2026)</button>
+    <button class="b" data-f="ankit">Best campaign (Ankit reel, Mar–Jun 2026)</button>
+  </div>
+  <div class="funnel" id="funnelbox"></div>
+  <p id="fnote"></p>
+  <div class="call imp"><div class="t">Important</div>Checkout works. Nearly everyone who starts checkout pays. The loss happens on the product page, before people click “Buy Now”.</div>
+  <h3>What the product page shows today</h3>
+  <ul>
+    <li>₹499 next to a struck-out ₹899. ₹899 is the 2-pack price, so it looks like a fake discount.</li>
+    <li>The rating shows as “100.0” instead of stars.</li>
+    <li>No “cash on delivery” line near the Buy Now button.</li>
+    <li>“SPF 25” on the page, but the FAQ says “Is this a sunscreen? No”.</li>
+  </ul>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Clicked Buy Now % = clicks ÷ page visits
+Bought % = purchases ÷ page visits
+Last campaign: 4 ÷ 197 = 2.0% clicked · 3 ÷ 197 = 1.5% bought
+Ankit campaign: 198 ÷ 2,346 = 8.4% clicked · 83 ÷ 2,346 = 3.5% bought</div>
+    <p>All numbers from Meta Ads. “Clicked Buy Now” is Meta’s “add to cart” count.</p>
+  </div></details>
+</section>
+
+<!-- 4 -->
+<section class="s" id="year">
+  <div class="eyebrow">Part 4</div>
+  <h2>The year, month by month</h2>
+  <div class="time">3 minutes</div>
+  <p class="lead">Orders followed ad spend. No ads, no orders.</p>
+  <p>Click any month to see what happened.</p>
+  <div class="chart" id="chart"></div>
+  <div class="mlabels" id="mlabels"></div>
+  <div class="legend"><span><i style="background:var(--blue)"></i>Ad spend</span><span><i style="background:var(--accent)"></i>Store orders</span></div>
+  <div class="panel" id="mpanel"></div>
+  <div class="call simple"><div class="t">In simple words</div>When ad spend went up, orders went up. In Sep and Oct there were no ads, and there were 0 orders. Orders started to fall in May, before any price cut. The ads were wearing out (Part 6).</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Ad spend = all Meta campaigns in that month
+Store orders = all orders placed, test orders removed
+Bought % = Meta purchases ÷ page visits from ads</div>
+    <p>Store orders include orders that did not come from ads. Nov 2026 covers 1–16 Nov only, and its delivery is not tracked yet.</p>
+  </div></details>
+</section>
+
+<!-- 5 -->
+<section class="s" id="ads">
+  <div class="eyebrow">Part 5</div>
+  <h2>Which ads sold</h2>
+  <div class="time">2 minutes</div>
+  <p class="lead">Real people sold it. Brand-made ads did not.</p>
+  <p><b>Cost per sale</b> by type of ad (shorter bar = cheaper = better):</p>
+  <div id="adbars"></div>
+  <table>
+    <tr><th>Type of ad</th><th class="r">Spend</th><th class="r">Sales</th><th class="r">Bought %</th></tr>
+    <tr><td>Creator reels (Oshin, Ankit, Oshine)</td><td class="r">₹1,73,523</td><td class="r">141</td><td class="r">3.8%</td></tr>
+    <tr><td>Simple image for past visitors</td><td class="r">₹14,922</td><td class="r">16</td><td class="r">4.1%</td></tr>
+    <tr><td>Brand-made SPF / midday videos</td><td class="r">₹16,424</td><td class="r">9</td><td class="r">1.5%</td></tr>
+    <tr><td>Nov 2026 brand-made ads at ₹499</td><td class="r">₹10,188</td><td class="r">3</td><td class="r">1.5%</td></tr>
+    <tr><td>Follower and traffic campaigns</td><td class="r">₹35,244</td><td class="r">0</td><td class="r">none</td></tr>
+  </table>
+  <div class="call simple"><div class="t">In simple words</div>157 of our 174 ad sales came from creator reels and one simple image. Follower campaigns spent ₹35,244 and sold nothing.</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Cost per sale = spend ÷ Meta purchases
+Creator reels: ₹1,73,523 ÷ 141 = ₹1,231
+Bought % = purchases ÷ page visits</div>
+    <p>Creator fees are not in our records, so the real cost per sale of creator reels is higher.</p>
+  </div></details>
+</section>
+
+<!-- 6 -->
+<section class="s" id="wear">
+  <div class="eyebrow">Part 6</div>
+  <h2>Every ad wore out within weeks</h2>
+  <div class="time">2 minutes</div>
+  <p>Cost per sale every two weeks, with the same budget. Click to switch.</p>
+  <div class="btns" id="wbtns">
+    <button class="b on" data-w="ankit">Ankit reel (Apr–Jun)</button>
+    <button class="b" data-w="oshine">Oshine reel (Jun–Jul)</button>
+  </div>
+  <div class="seq" id="wseq"></div>
+  <div class="two">
+    <div class="call good"><div class="t">Good news</div>A new ad (Oshine) started cheap again, with the same targeting. So the market did not say “no”. Each ad just found its keen buyers fast.</div>
+    <div class="call imp"><div class="t">The lesson</div>We needed a new creator ad every few weeks. We did not make them.</div>
+  </div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Cost per sale (2 weeks) = spend in those 2 weeks ÷ Meta purchases in those 2 weeks
+Example: ₹20,898 ÷ 27 = ₹774</div>
+    <p>Oshine’s first block is only 5 days (15–19 Jun), because the ad started on 15 Jun.</p>
+  </div></details>
+</section>
+
+<!-- 7 -->
+<section class="s" id="price">
+  <div class="eyebrow">Part 7</div>
+  <h2>The price path</h2>
+  <div class="time">2 minutes</div>
+  <p class="lead">Cutting the price did not bring buyers back.</p>
+  <p>Click a price to see what happened.</p>
+  <div class="btns" id="pbtns"></div>
+  <div class="panel" id="ppanel"></div>
+  <div class="call simple"><div class="t">In simple words</div>At about ₹1,100, 3 to 4 of every 100 visitors bought, when creator reels ran. The lower prices did not bring more buyers. They only made each order earn less. We changed the price about 11 times in 12 months, so we never learned what one price really does.</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Earned per order (before ads) = price ÷ 1.18 − product (₹300–350) − shipping (₹100–150)
+₹1,199 → 1,016 − 350 − 150 = ₹516  (high case: 1,016 − 300 − 100 = ₹616)</div>
+    <p>₹899 and ₹499 ran only with narrow Mumbai targeting and brand-made ads. So we cannot blame price alone.</p>
+  </div></details>
+</section>
+
+<!-- 8 -->
+<section class="s" id="money">
+  <div class="eyebrow">Part 8</div>
+  <h2>The money: try it yourself</h2>
+  <div class="time">3 minutes</div>
+  <p>Move the sliders. See if one order can pay for its own ads.</p>
+  <div class="calc">
+    <div>
+      <div class="ctl"><label>Price of one order</label>
+        <select id="cprice">
+          <option value="1199">₹1,199 (1 bottle)</option>
+          <option value="959.2">₹959 (₹1,199 with 20% code)</option>
+          <option value="1099">₹1,099 (1 bottle)</option>
+          <option value="899">₹899 (1 bottle)</option>
+          <option value="499">₹499 (1 bottle)</option>
+          <option value="899|2">₹899 for 2 bottles</option>
+          <option value="1299|3">₹1,299 for 3 bottles</option>
+        </select></div>
+      <div class="ctl"><label>Product cost per bottle <span id="vprod"></span></label><input type="range" id="cprod" min="200" max="450" step="5" value="325"></div>
+      <div class="ctl"><label>Shipping per order <span id="vship"></span></label><input type="range" id="cship" min="50" max="200" step="5" value="125"></div>
+      <div class="ctl"><label>Ad money per order <span id="vads"></span></label><input type="range" id="cads" min="200" max="3500" step="10" value="2020"></div>
+      <p style="font-size:13.5px;color:var(--muted)">Our year average was ₹2,020. Our best two weeks were ₹774.</p>
+    </div>
+    <div class="res" id="cres"></div>
+  </div>
+  <h3>The whole year (Nov 2025 – Aug 2026)</h3>
+  <div class="cards">
+    <div class="card"><div class="big">₹2.61 lakh</div><div class="lbl">Meta ad spend</div></div>
+    <div class="card"><div class="big">₹1.73 lakh</div><div class="lbl">delivered revenue, incl. GST</div><div class="note">Real customers ₹1.22 lakh · friends &amp; family ₹18k · café ₹30k · other ₹2k</div></div>
+    <div class="card"><div class="big">−₹1.8 to 2.0 lakh</div><div class="lbl">result after ads</div><div class="note">Before RTO costs, fees, creator fees, salaries</div></div>
+  </div>
+  <div class="call imp"><div class="t">Important</div>Only 59% of orders reached the customer. 74% were cash on delivery, and 23% came back undelivered (RTO). That makes every rupee of ads worth even less.</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Earned before ads = ₹1,72,532 ÷ 1.18 − 186 bottles × ₹300–350 − 129 deliveries × ₹100–150
+                 = ₹61,764 to ₹77,514
+Result after ads = earned − ₹2,60,547 ads = −₹1,98,783 to −₹1,83,033</div>
+    <p>Product and shipping costs are our own estimates. No invoices were found.</p>
+  </div></details>
+</section>
+
+<!-- 9 -->
+<section class="s" id="repeat">
+  <div class="eyebrow">Part 9</div>
+  <h2>Repeat buyers: the core problem</h2>
+  <div class="time">2 minutes</div>
+  <p class="lead">1 of 109 real customers ordered a second time.</p>
+  <p>Each dot is one real customer who received a bottle.</p>
+  <div class="btns" id="rbtns">
+    <button class="b on" data-r="1">Show who reordered</button>
+    <button class="b" data-r="2">Also show who tried to reorder</button>
+  </div>
+  <div class="dots" id="dots"></div>
+  <p id="rnote"></p>
+  <h3>What buyers told us</h3>
+  <div class="tags"><span class="tag">“used it only once”</span><span class="tag">“bottle still not finished”</span><span class="tag">“hard to press”</span><span class="tag">“uneven spray”</span></div>
+  <div class="call imp"><div class="t">Important</div>We planned a refill code and calls to 87 customers. Neither happened. So we do not know why people did not come back. This is the cheapest question to answer: we ask them.</div>
+  <div class="call simple"><div class="t">In simple words</div>Healthy brands get 10 to 30 of every 100 customers back. We got about 1. Without repeat buyers, every sale must pay for its own ads, and ours never did.</div>
+  <details class="maths"><summary>Show the maths</summary><div class="in">
+    <div class="f">Repeat rate = real customers with 2+ delivered orders ÷ real customers who received a bottle
+           = 1 ÷ 109 = 0.9%
+Wider count = real customers who placed a second order ÷ 109 = 2 ÷ 109 = 1.8%</div>
+    <p>The second customer ordered again in August, but that order was not delivered. Removed from the count: founders, family, friends, test orders, the café deal, and re-orders after a failed delivery.</p>
+  </div></details>
+</section>
+
+<!-- 10 -->
+<section class="s" id="ideas">
+  <div class="eyebrow">Part 10</div>
+  <h2>What the product says it is</h2>
+  <div class="time">2 minutes</div>
+  <p class="lead">Six ideas on one bottle. Buyers liked three things.</p>
+  <div class="two">
+    <div><h3>What we say today</h3>
+      <div class="tags"><span class="tag">2 PM reset</span><span class="tag">over makeup</span><span class="tag">glow</span><span class="tag">SPF 25 top-up</span><span class="tag">coffee-scented</span><span class="tag">six steps in one</span></div>
+      <p style="font-size:15px">The bottle says “Sunscreen Mist SPF 25”. The FAQ says “Is this a sunscreen? No”. The product title changed many times this year.</p></div>
+    <div><h3>What buyers praised</h3>
+      <div class="tags"><span class="tag good">the smell</span><span class="tag good">the glow</span><span class="tag good">using it over makeup</span></div>
+      <p style="font-size:15px">Our best ad used one simple idea: tired skin, then glow in seconds.</p></div>
+  </div>
+  <div class="call simple"><div class="t">Would “coffee sunscreen” have been better?</div>Probably not. Our SPF ads sold the worst. SPF 25 competes with cheaper SPF 50 sprays. And mCaffeine already owns “coffee” in India.</div>
+</section>
+
+<!-- 11 -->
+<section class="s" id="sure">
+  <div class="eyebrow">Part 11</div>
+  <h2>How sure we are</h2>
+  <div class="time">1 minute</div>
+  <div class="two">
+    <div class="call good" style="margin:0"><div class="t">Proven by the data</div>
+      <ul style="margin:6px 0 0;padding-left:18px">
+        <li>No ads means no orders (Sep–Oct).</li>
+        <li>Each ad wears out within weeks.</li>
+        <li>About 1% of buyers reordered.</li>
+        <li>Checkout works; people leave before Buy Now.</li>
+        <li>Follower campaigns sold nothing.</li>
+      </ul></div>
+    <div class="call imp" style="margin:0"><div class="t">Only suggested</div>
+      <ul style="margin:6px 0 0;padding-left:18px">
+        <li>How much the price changed sales.</li>
+        <li>That too many ideas hurt sales.</li>
+        <li>That Mumbai-only targeting made it worse.</li>
+        <li>Why buyers did not come back. Nobody asked them.</li>
+      </ul></div>
+  </div>
+  <p style="margin-top:14px;font-size:15px">“Only suggested” means several things changed at the same time, so we cannot split their effects.</p>
+</section>
+
+<!-- 12 -->
+<section class="s" id="quiz">
+  <div class="eyebrow">Part 12</div>
+  <h2>Check yourself</h2>
+  <div class="time">2 minutes · click an answer</div>
+  <div id="quizbox"></div>
+</section>
+
+<!-- 13 -->
+<section class="s" id="decide">
+  <div class="eyebrow">Part 13</div>
+  <h2>What we decide together</h2>
+  <div class="time">Tick when done (saved in your browser only)</div>
+  <p class="lead">Ask our buyers first. Then choose a path.</p>
+  <div id="checks"></div>
+  <h3>Then pick one path, from what buyers say</h3>
+  <table>
+    <tr><th>If buyers say…</th><th>Then we…</th></tr>
+    <tr><td>The spray or the bottle is the problem</td><td>Fix the product, then test again with a creator reel.</td></tr>
+    <tr><td>“I use it only now and then”</td><td>Sell it as a gift or add-on, not through paid ads.</td></tr>
+    <tr><td>No clear reason</td><td>Consider winding Aura Shot down.</td></tr>
+  </table>
+  <div class="call imp"><div class="t">To agree today</div>Who makes the calls, and by when? What is the most we can pay for one sale and still be OK?</div>
+</section>
+
+<!-- 14 -->
+<section class="s" id="data">
+  <div class="eyebrow">Part 14</div>
+  <h2>Data and definitions</h2>
+  <div class="time">Reference</div>
+  <table>
+    <tr><th>Word</th><th>What it means here</th></tr>
+    <tr><td>Ad spend</td><td>Money paid to Meta (Facebook and Instagram), all campaigns.</td></tr>
+    <tr><td>Store order</td><td>Any order placed on the website. Test orders removed.</td></tr>
+    <tr><td>Delivered order</td><td>An order that reached the customer (status “Delivered” in the tracker).</td></tr>
+    <tr><td>Real customer</td><td>Not a founder, family member, friend, test order or the café deal.</td></tr>
+    <tr><td>Meta purchase</td><td>A sale that Meta says came from an ad (7-day click, 1-day view).</td></tr>
+    <tr><td>Page visits</td><td>People who reached the product page from an ad (“landing page views”).</td></tr>
+    <tr><td>Bought %</td><td>Meta purchases ÷ page visits.</td></tr>
+    <tr><td>Earned per order</td><td>Price ÷ 1.18 (GST) − product cost − shipping. Before ads.</td></tr>
+    <tr><td>RTO</td><td>“Return to origin”: the order came back undelivered.</td></tr>
+  </table>
+  <h3>Where the numbers come from</h3>
+  <ul>
+    <li>Meta Ads data, pulled 17 Nov 2026.</li>
+    <li>Order tracker (orders #1001–#1234) and Shopify order emails (#1235–#1241).</li>
+    <li>Product and shipping costs: our own estimates.</li>
+    <li>The full sheet with every formula: “Aura Shot numbers tracker”.</li>
+  </ul>
+  <h3>Records that disagree</h3>
+  <ul>
+    <li>Meta counted 174 ad purchases. The store had 218 orders, and 129 were delivered. We trust the store’s delivered count.</li>
+    <li>An internal file claims “₹10 lakh in the first 90 days”. The order tracker shows about ₹58k.</li>
+    <li>There was no single launch price: early orders show ₹899 to ₹1,299.</li>
+  </ul>
+</section>
+
+<footer>Internal review. No customer names, phone numbers or addresses are on this page. Last updated 19 Nov 2026.</footer>
+</main>
+</div>
+
+<script>
+(function(){
+  var inr=function(n){var r=Math.round(n);return (r<0?'−':'')+'₹'+Math.abs(r).toLocaleString('en-IN')};
+  var pct=function(n){return (n*100).toFixed(1)+'%'};
+  var $=function(id){return document.getElementById(id)};
+
+  /* funnel */
+  var F={
+    nov:{steps:[[197,'visited the product page'],[4,'clicked Buy Now'],[3,'started checkout'],[3,'paid']],note:'Last campaign: about 2 of every 100 visitors clicked Buy Now.'},
+    ankit:{steps:[[2346,'visited the product page'],[198,'clicked Buy Now'],[145,'started checkout'],[83,'paid']],note:'Best campaign: about 8 of every 100 visitors clicked Buy Now, 4 times better.'}
+  };
+  function drawF(k){
+    var s=F[k].steps,h='';
+    s.forEach(function(x,i){
+      if(i) h+='<div class="farrow">→</div>';
+      h+='<div class="fstep"><div class="n">'+x[0].toLocaleString('en-IN')+'</div><div class="l">'+x[1]+'</div>'+(i?'<div class="p">'+pct(x[0]/s[0][0])+' of visitors</div>':'')+'</div>';
+    });
+    document.getElementById('funnelbox').innerHTML=h;
+    document.getElementById('fnote').textContent=F[k].note;
+  }
+  tabs('fbtns','f',drawF); drawF('nov');
+
+  /* months */
+  var M=[
+    ['Nov ’25',7623,10,7,230,3,'Launch. Mixed early prices (₹899–1,299). A first small sales campaign.'],
+    ['Dec ’25',0,1,1,0,0,'No ads. 1 order.'],
+    ['Jan ’26',18386,23,15,530,12,'₹1,199. Retargeting and prospecting ads. First real sales month.'],
+    ['Feb ’26',30062,37,22,685,29,'₹1,099 from 7 Feb. Oshin creator reel. Café deal: 50 bottles for ₹30,000.'],
+    ['Mar ’26',24781,19,9,663,16,'Back to ₹1,199 on 11 Mar. Ankit creator reel starts on 28 Mar.'],
+    ['Apr ’26',44566,51,31,1148,46,'Best month. Ankit reel plus a 20% code (BADDIE).'],
+    ['May ’26',46083,31,15,891,28,'Same ad, same budget, fewer orders. The ad is wearing out.'],
+    ['Jun ’26',35353,25,15,613,24,'New Oshine creator reel from 15 Jun.'],
+    ['Jul ’26',45512,15,9,318,13,'₹19.7k of the spend went to a follower campaign (0 sales).'],
+    ['Aug ’26',8180,6,5,409,0,'New “midday reset” message. ₹899 from about 20 Aug. Mumbai + Pune ad: 0 sales.'],
+    ['Sep ’26',0,0,0,0,0,'No ads. 0 orders.'],
+    ['Oct ’26',0,0,0,0,0,'No ads. 0 orders.'],
+    ['Nov ’26',10188,4,0,197,3,'₹499. Mumbai campaign, 13–15 Nov, then paused. Delivery not tracked yet.']
+  ];
+  var maxS=46083,maxO=51,ch='',ml='';
+  M.forEach(function(m,i){
+    var hs=Math.max(2,Math.round(m[1]/maxS*190)),ho=Math.max(2,Math.round(m[2]/maxO*190));
+    ch+='<div class="col" data-i="'+i+'" title="'+m[0]+'"><div class="bars"><div class="bar sp" style="height:'+hs+'px"></div><div class="bar or" style="height:'+ho+'px"></div></div></div>';
+    ml+='<div>'+m[0].replace(' ','<br>')+'</div>';
+  });
+  document.getElementById('chart').innerHTML=ch;
+  document.getElementById('mlabels').innerHTML=ml;
+  function showM(i){
+    var m=M[i];
+    [].forEach.call(document.querySelectorAll('.col'),function(c){c.classList.toggle('sel',+c.dataset.i===i)});
+    var cpo=m[3]?inr(m[1]/m[3]):'none', bp=m[4]?pct(m[5]/m[4]):'none';
+    document.getElementById('mpanel').innerHTML='<b style="font-size:18px">'+m[0]+'</b><div class="kv">'+
+      '<div><div class="k">Ad spend</div><div class="v">'+inr(m[1])+'</div></div>'+
+      '<div><div class="k">Store orders</div><div class="v">'+m[2]+'</div></div>'+
+      '<div><div class="k">Delivered</div><div class="v">'+m[3]+'</div></div>'+
+      '<div><div class="k">Visitors who bought</div><div class="v">'+bp+'</div></div></div>'+
+      '<p style="margin:6px 0 0">'+m[6]+'</p>';
+  }
+  document.getElementById('chart').addEventListener('click',function(e){var c=e.target.closest('.col');if(c)showM(+c.dataset.i)});
+  showM(5);
+
+  /* ad bars */
+  var A=[['Simple image (past visitors)',933],['Creator reels',1231],['Brand-made SPF videos',1825],['Nov 2026 ads at ₹499',3396],['Mumbai-only campaigns (Aug + Nov)',5094]];
+  document.getElementById('adbars').innerHTML=A.map(function(a){return '<div class="hrow"><div>'+a[0]+'</div><div class="htrack"><div class="hfill'+(a[1]<1500?' blue':'')+'" style="width:'+(a[1]/5094*100)+'%"></div></div><div class="hval">'+inr(a[1])+'</div></div>'}).join('');
+
+  /* wear */
+  var W={ankit:[['28 Mar–10 Apr',774],['11–24 Apr',1164],['25 Apr–8 May',1486],['9–22 May',1666],['23 May–5 Jun',1787]],
+         oshine:[['15–19 Jun',734],['20 Jun–3 Jul',1510],['4–17 Jul',2348]]};
+  function drawW(k){
+    var s=W[k];
+    document.getElementById('wseq').innerHTML=s.map(function(x,i){return (i?'<span class="to">→</span>':'')+'<span class="chip'+(i===s.length-1?' hot':'')+'">'+inr(x[1])+'<small>'+x[0]+'</small></span>'}).join('');
+  }
+  tabs('wbtns','w',drawW); drawW('ankit');
+
+  /* price */
+  var P=[
+    ['₹1,199','Jan 2026','2.3%','₹516–616','Full price. Sales started with retargeting ads.'],
+    ['₹1,099','Feb 2026','4.2%','₹431–531','Lower price plus the Oshin creator reel. Strong month.'],
+    ['₹1,199 + 20% code','Apr–Jul 2026','3.1–4.1%','₹313–616','Ankit and Oshine creator reels. The best period of the year.'],
+    ['₹899 (“−40% off ₹1,500”)','Aug–Oct 2026','0 of 402 visitors','₹262–362','Brand-made ad, Mumbai + Pune only. No sales. Then no ads at all.'],
+    ['₹499 (struck ₹899)','Nov 2026','1.5%','about ₹0','Brand-made ads, Mumbai only. 3 sales, each losing money.']
+  ];
+  var pb='';P.forEach(function(p,i){pb+='<button class="b'+(i===0?' on':'')+'" data-p="'+i+'">'+p[0]+'</button>'});
+  document.getElementById('pbtns').innerHTML=pb;
+  function drawP(i){var p=P[i];document.getElementById('ppanel').innerHTML='<b style="font-size:18px">'+p[0]+'</b> · '+p[1]+
+    '<div class="kv" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><div class="k">Visitors who bought</div><div class="v">'+p[2]+'</div></div><div><div class="k">Earned per order, before ads</div><div class="v">'+p[3]+'</div></div></div><p style="margin:6px 0 0">'+p[4]+'</p>'}
+  tabs('pbtns','p',function(k){drawP(+k)}); drawP(0);
+
+  /* calculator */
+  function calc(){
+    var pv=$('cprice').value.split('|'),price=+pv[0],bottles=+(pv[1]||1),prod=+$('cprod').value,ship=+$('cship').value,ads=+$('cads').value;
+    $('vprod').textContent=inr(prod);$('vship').textContent=inr(ship);$('vads').textContent=inr(ads);
+    var ex=price/1.18,earned=ex-bottles*prod-ship,res=earned-ads;
+    var h='<div class="row"><span>Price paid (incl. GST)</span><b>'+inr(price)+'</b></div>'+
+      '<div class="row"><span>Price without GST (÷ 1.18)</span><b>'+inr(ex)+'</b></div>'+
+      '<div class="row"><span>− product ('+bottles+' × '+inr(prod)+')</span><b>'+inr(bottles*prod)+'</b></div>'+
+      '<div class="row"><span>− shipping</span><b>'+inr(ship)+'</b></div>'+
+      '<div class="row"><span>= Earned before ads</span><b>'+inr(earned)+'</b></div>'+
+      '<div class="row"><span>− ad money for this order</span><b>'+inr(ads)+'</b></div>'+
+      '<div class="row"><span><b>= Result for one order</b></span><b style="color:'+(res<0?'var(--ink)':'var(--good)')+'">'+inr(res)+'</b></div>';
+    var v;
+    if(earned<=0) v='<div class="verdict bad">This price earns nothing even before ads. No ad cost can work.</div>';
+    else if(res<0) v='<div class="verdict bad">Each order loses '+inr(-res)+'. The same customer must buy about '+Math.ceil(ads/earned)+' times to pay back the ads.</div>';
+    else v='<div class="verdict ok">Each order makes '+inr(res)+' after ads. To break even, ad money per order must stay under '+inr(earned)+'.</div>';
+    $('cres').innerHTML=h+v;
+  }
+  ['cprice','cprod','cship','cads'].forEach(function(id){$(id).addEventListener('input',calc)});calc();
+
+  /* dots */
+  function drawR(k){
+    var h='';for(var i=0;i<109;i++){h+='<div class="dot'+(i===0?' one':(i===1&&k==='2'?' two':''))+'"></div>'}
+    $('dots').innerHTML=h;
+    $('rnote').innerHTML=k==='1'?'<b style="color:var(--ink)">Orange</b> = the 1 customer who received a second order (Jan, then Feb). 1 ÷ 109 = 0.9%.':'<b style="color:var(--blue)">Blue</b> = 1 more customer who ordered again in August, but the order came back undelivered. 2 ÷ 109 = 1.8%.';
+  }
+  tabs('rbtns','r',drawR); drawR('1');
+
+  /* quiz */
+  var Q=[
+    ['Why did orders drop to 0 in Sep and Oct 2026?',['The price was too high','No ads ran','The website was down','Creators stopped posting'],1,'No ads ran in those months. Orders followed ad spend all year.'],
+    ['What is the biggest problem, from the data?',['The checkout page','Almost nobody bought a second time','The ads got no clicks','The product had bad ratings'],1,'1 of 109 real customers ordered again. Without repeat buyers, each sale must pay for its own ads.'],
+    ['Which ads sold best?',['Follower campaigns','Brand-made SPF videos','Creator reels and a simple image for past visitors','Mumbai-only ads at ₹499'],2,'Creator reels and one simple image brought 157 of 174 ad sales.']
+  ];
+  $('quizbox').innerHTML=Q.map(function(q,i){return '<div class="q" data-q="'+i+'"><b>'+(i+1)+'. '+q[0]+'</b><div class="opts">'+q[1].map(function(o,j){return '<button class="o" data-j="'+j+'">'+String.fromCharCode(65+j)+'. '+o+'</button>'}).join('')+'</div><div class="why">'+q[3]+'</div></div>'}).join('');
+  $('quizbox').addEventListener('click',function(e){
+    var b=e.target.closest('button.o');if(!b)return;var box=b.closest('.q'),q=Q[+box.dataset.q];
+    [].forEach.call(box.querySelectorAll('button.o'),function(x){x.classList.remove('right','wrong');if(+x.dataset.j===q[2])x.classList.add('right')});
+    if(+b.dataset.j!==q[2])b.classList.add('wrong');box.classList.add('done');
+  });
+
+  /* checklist */
+  var C=[['Call 20 past buyers this week','Ask why they did not reorder: the spray, the bottle size, or “I use it now and then”?'],
+         ['Keep paid ads off until then','Every rupee now buys one-time sales that lose money.'],
+         ['Fix the product page basics','One honest price, a real star rating, a cash-on-delivery line near Buy Now.'],
+         ['Meet again with the answers','Pick one path from the table below.']];
+  var saved={};try{saved=JSON.parse(localStorage.getItem('aura-review-checks')||'{}')}catch(e){}
+  $('checks').innerHTML=C.map(function(c,i){return '<label class="check"><input type="checkbox" data-c="'+i+'"'+(saved[i]?' checked':'')+'><div><div class="t">'+(i+1)+'. '+c[0]+'</div><div class="d">'+c[1]+'</div></div></label>'}).join('');
+  $('checks').addEventListener('change',function(e){var c=e.target;if(!c.dataset)return;saved[c.dataset.c]=c.checked;try{localStorage.setItem('aura-review-checks',JSON.stringify(saved))}catch(err){}});
+
+  /* helpers */
+  function tabs(id,key,fn){
+    $(id).addEventListener('click',function(e){var b=e.target.closest('button.b');if(!b)return;
+      [].forEach.call($(id).querySelectorAll('button.b'),function(x){x.classList.toggle('on',x===b)});fn(b.dataset[key]);});
+  }
+
+  /* toc highlight */
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+    [].forEach.call(document.querySelectorAll('section.s'),function(s){obs.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
